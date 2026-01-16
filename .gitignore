@@ -1,22 +1,16 @@
 # ===== Keil build output =====
-Objects/
-Listings/
-*.o
-*.axf
-*.map
-*.lst
-*.crf
-*.d
+MDK-ARM/Objects/
+MDK-ARM/Listings/
 
-# ===== Keil user / IDE files =====
-*.uvoptx
-*.uvgui*
-*.uvguix*
+# ===== Keil user files =====
+MDK-ARM/*.uvoptx
+MDK-ARM/*.uvgui*
+MDK-ARM/*.uvguix*
 
 # ===== Debug / Trace =====
-EventRecorderStub.scvd
-JLinkLog.txt
-JLinkSettings.ini
+MDK-ARM/EventRecorderStub.scvd
+MDK-ARM/JLinkLog.txt
+MDK-ARM/JLinkSettings.ini
 
 # ===== OS =====
 Thumbs.db
