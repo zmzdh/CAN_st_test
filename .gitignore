@@ -1,0 +1,23 @@
+# ===== Keil build output =====
+Objects/
+Listings/
+*.o
+*.axf
+*.map
+*.lst
+*.crf
+*.d
+
+# ===== Keil user / IDE files =====
+*.uvoptx
+*.uvgui*
+*.uvguix*
+
+# ===== Debug / Trace =====
+EventRecorderStub.scvd
+JLinkLog.txt
+JLinkSettings.ini
+
+# ===== OS =====
+Thumbs.db
+.DS_Store
