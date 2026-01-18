@@ -1,0 +1,23 @@
+{
+  "configurations": [
+    {
+      "name": "FM33",
+      "includePath": [
+        "${workspaceFolder}/Inc",
+        "${workspaceFolder}/Src",
+        "${workspaceFolder}/drivers",
+        "${workspaceFolder}/Drivers/**",
+        "${workspaceFolder}/MF-config/**",
+        "${workspaceFolder}/MDK-ARM/**"
+      ],
+      "defines": [
+        "FM33FG0XXA",
+        "__KEIL__"
+      ],
+      "compilerPath": "arm-none-eabi-gcc",
+      "cStandard": "c11",
+      "intelliSenseMode": "gcc-arm"
+    }
+  ],
+  "version": 4
+}
