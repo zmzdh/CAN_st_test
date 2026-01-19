@@ -48,6 +48,7 @@
 #include "clock.h"
 #include "lptim16.h"
 #include "gpio.h"
+#include "pump_pwm.h"
 
 uint32_t GetV0;
 uint32_t GetV1;
@@ -66,6 +67,7 @@ uint16_t CAN_V[8];   // V0 ~ V7，用于CAN发送
 uint8_t txBuf[8];
 
 #define CAN_CTRL_STD_ID 0x200U
+#define CAN_PWM_STD_ID  0x201U
 
 static void HandleCanControlMessage(void)
 {
@@ -89,8 +91,26 @@ static void HandleCanControlMessage(void)
                       (uint8_t)(RxMessage.Data[5] & 0x04U));
     if ((RxMessage.Data[6] & 0x01U) != 0U)
     {
+        PumpPwm_DisableAll();
         VND7140_FaultResetPulse();
     }
+}
+
+static void HandleCanPwmMessage(void)
+{
+    uint16_t pulse_duty;
+    uint16_t mass_duty;
+
+    if ((RxMessage.StdId != CAN_PWM_STD_ID) || (RxMessage.DLC < 2U))
+    {
+        return;
+    }
+
+    pulse_duty = RxMessage.Data[0];
+    mass_duty = RxMessage.Data[1];
+
+    PumpPwm_SetDuty(PUMP_PWM_PULSE, pulse_duty);
+    PumpPwm_SetDuty(PUMP_PWM_MASS, mass_duty);
 }
 
 /**
@@ -197,8 +217,11 @@ int main(void)
     /* 用于监控XTHF停振事件，先配置系统时钟，再使能该监控定时器, 10ms周期 */
     LPTIM16_Init();
 	
-	  /* LED初始化 */
+    /* LED初始化 */
     GPIO_Init();
+
+    /* Pump PWM初始化 */
+    PumpPwm_Init();
 		
 		/* ADC初始化 */
     AdcInit();
@@ -223,6 +246,7 @@ int main(void)
         {
             CanRxPending = 0U;
             HandleCanControlMessage();
+            HandleCanPwmMessage();
         }
         
         /* 电源掉电监测处理 */
@@ -309,4 +333,3 @@ int main(void)
 
     }
 }
-
