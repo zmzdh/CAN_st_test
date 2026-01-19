@@ -65,6 +65,34 @@ uint16_t CAN_V[8];   // V0 ~ V7，用于CAN发送
 
 uint8_t txBuf[8];
 
+#define CAN_CTRL_STD_ID 0x200U
+
+static void HandleCanControlMessage(void)
+{
+    uint32_t mask;
+
+    if ((RxMessage.StdId != CAN_CTRL_STD_ID) || (RxMessage.DLC < 7U))
+    {
+        return;
+    }
+
+    mask = (uint32_t)RxMessage.Data[0]
+           | ((uint32_t)RxMessage.Data[1] << 8)
+           | ((uint32_t)RxMessage.Data[2] << 16)
+           | (((uint32_t)(RxMessage.Data[3] & 0x0FU)) << 24);
+
+    ValveOutputs_Set(mask);
+    VND7140_SetInputs((uint8_t)(RxMessage.Data[4] & 0x01U),
+                      (uint8_t)(RxMessage.Data[4] & 0x02U));
+    VND7140_SetSelect((uint8_t)(RxMessage.Data[5] & 0x01U),
+                      (uint8_t)(RxMessage.Data[5] & 0x02U),
+                      (uint8_t)(RxMessage.Data[5] & 0x04U));
+    if ((RxMessage.Data[6] & 0x01U) != 0U)
+    {
+        VND7140_FaultResetPulse();
+    }
+}
+
 /**
   * @brief  ECC检错中断不可屏蔽，直接进入NMI中断服务 请保留 
   * @param  None
@@ -190,6 +218,12 @@ int main(void)
     {
         /* 清狗 */
         IWDT_Clr();
+
+        if (CanRxPending != 0U)
+        {
+            CanRxPending = 0U;
+            HandleCanControlMessage();
+        }
         
         /* 电源掉电监测处理 */
         PowerDownMonitoring();
@@ -275,5 +309,4 @@ int main(void)
 
     }
 }
-
 

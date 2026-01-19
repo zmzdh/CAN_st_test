@@ -81,6 +81,7 @@ typedef struct
                         0xFF. */
 } CanRxMsg;
 extern CanRxMsg RxMessage;
+extern volatile uint8_t CanRxPending;
 
 #define CAN_TIMEOUT   0x5FFFFU
 
@@ -95,4 +96,3 @@ int32_t Can_Controller_Init(void);
 int32_t Can_Controller_DeInit(void);
 
 #endif
-

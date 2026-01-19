@@ -45,6 +45,7 @@
 
 CanTxMsg TxMessage = {0};  /* 发送缓冲区 */
 CanRxMsg RxMessage = {0};  /* 接收缓冲区 */
+volatile uint8_t CanRxPending = 0U;
 
 
 /* CAN 中断服务函数 */
@@ -58,6 +59,7 @@ void FSCAN_IRQHandler(void)
     {
         FL_CAN_FIFO_Read(CAN);
         FL_CAN_ClearFlag_RXNotEmpty(CAN);
+        CanRxPending = 1U;
     }
     
     /* 必须保留 */
@@ -254,12 +256,12 @@ int32_t Can_Controller_Init(void)
     CAN_FilterInitStructure.filterIDMode  = FL_CAN_IDMODE_32BIT;     /* 滤波器ID模式设置 */
     if (CAN_FilterInitStructure.filterIDMode  == FL_CAN_IDMODE_32BIT)/* 滤波器模式：扩展模式32bit */
     {
-        CAN_FilterInitStructure.filterIdStandard = 0X6AD;            /* 过滤标准ID */
+        CAN_FilterInitStructure.filterIdStandard = 0X000;            /* 过滤标准ID */
         CAN_FilterInitStructure.filterIdSRR = FL_CAN_SRR_BIT_LOW;
         CAN_FilterInitStructure.filterIdIDE = FL_CAN_IDE_BIT_LOW;
         CAN_FilterInitStructure.filterIdRTR = FL_CAN_RTR_BIT_LOW;
 
-        CAN_FilterInitStructure.filterMaskIdStandard = 0X7FF;         /* 滤波器掩码 */
+        CAN_FilterInitStructure.filterMaskIdStandard = 0X000;         /* 滤波器掩码 */
         CAN_FilterInitStructure.filterMaskIdSRR = FL_DISABLE;
         CAN_FilterInitStructure.filterMaskIdIDE = FL_DISABLE;         /* 使能该位是否参与滤波器比较 */
         CAN_FilterInitStructure.filterMaskIdRTR = FL_DISABLE;
