@@ -51,6 +51,15 @@
 #define EVPOWER_EN_GPIO   GPIOC
 #define EVPOWER_EN_PIN    FL_GPIO_PIN_5
 
+/* TODO: Confirm pump PWM pin mapping against the schematic (MCU pins 72/73). */
+#define PUMP_PULSE_PWM_GPIO   GPIOC
+#define PUMP_PULSE_PWM_PIN    FL_GPIO_PIN_7
+#define PUMP_PULSE_PWM_REMAP  FL_GPIO_PINREMAP_FUNCTON1
+
+#define PUMP_MASS_PWM_GPIO    GPIOC
+#define PUMP_MASS_PWM_PIN     FL_GPIO_PIN_6
+#define PUMP_MASS_PWM_REMAP   FL_GPIO_PINREMAP_FUNCTON1
+
 #define IN1_GPIO          GPIOA
 #define IN1_PIN           FL_GPIO_PIN_2
 #define IN2_GPIO          GPIOA
