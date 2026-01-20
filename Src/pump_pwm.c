@@ -141,11 +141,11 @@ void PumpPwm_SetDuty(PumpPwmChannel channel, uint16_t duty_percent)
 
     if (channel == PUMP_PWM_PULSE)
     {
-        FL_GPTIM_WriteCompareCH1(PUMP_PWM_TIMER, compare_value);
+        FL_GPTIM_WriteCompareCH3(PUMP_PWM_TIMER, compare_value);
     }
     else
     {
-        FL_GPTIM_WriteCompareCH2(PUMP_PWM_TIMER, compare_value);
+        FL_GPTIM_WriteCompareCH4(PUMP_PWM_TIMER, compare_value);
     }
 }
 
