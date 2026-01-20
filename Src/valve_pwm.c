@@ -296,18 +296,27 @@ void ValvePwm_SetGroupDutyPercent(ValvePwm_Group group, uint8_t duty_percent)
 void ValvePwm_SetMask(uint32_t mask)
 {
     uint32_t primask;
+    uint32_t previous_mask;
+    uint32_t removed_mask;
+    uint32_t new_mask = mask & VALVE_PWM_MASK_ALL;
 
     primask = __get_PRIMASK();
     __disable_irq();
-    g_valve_pwm_mask = mask & VALVE_PWM_MASK_ALL;
+    previous_mask = g_valve_pwm_mask;
+    g_valve_pwm_mask = new_mask;
     g_valve_pwm_group_mask[VALVE_PWM_GROUP_GPT] = g_valve_pwm_mask & VALVE_PWM_MASK_GPT;
     g_valve_pwm_group_mask[VALVE_PWM_GROUP_ATIM] = g_valve_pwm_mask & VALVE_PWM_MASK_ATIM;
     g_valve_pwm_group_mask[VALVE_PWM_GROUP_TAU] = g_valve_pwm_mask & VALVE_PWM_MASK_TAU;
+    removed_mask = previous_mask & ~new_mask;
     if (primask == 0U)
     {
         __enable_irq();
     }
 
+    if (removed_mask != 0U)
+    {
+        ValveOutputs_SetMasked(0U, removed_mask);
+    }
     ValvePwm_ApplyGroupOutput(g_valve_pwm_group_mask[VALVE_PWM_GROUP_GPT], g_valve_pwm_duty[VALVE_PWM_GROUP_GPT]);
     ValvePwm_ApplyGroupOutput(g_valve_pwm_group_mask[VALVE_PWM_GROUP_ATIM], g_valve_pwm_duty[VALVE_PWM_GROUP_ATIM]);
     ValvePwm_ApplyGroupOutput(g_valve_pwm_group_mask[VALVE_PWM_GROUP_TAU], g_valve_pwm_duty[VALVE_PWM_GROUP_TAU]);
