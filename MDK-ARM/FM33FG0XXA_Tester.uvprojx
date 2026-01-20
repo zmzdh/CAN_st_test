@@ -522,6 +522,11 @@
               <FileType>1</FileType>
               <FilePath>..\Src\pump_pwm.c</FilePath>
             </File>
+            <File>
+              <FileName>valve_pwm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\valve_pwm.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
