@@ -45,7 +45,7 @@
 #include "fm33fg0xxa_fl.h"
 #include "fm33fg0xxa_fl_gptim.h"
 
-#define PUMP_PWM_TIMER              GPTIM1
+#define PUMP_PWM_TIMER              GPTIM0
 #define PUMP_PWM_CHANNEL_PULSE      FL_GPTIM_CHANNEL_1
 #define PUMP_PWM_CHANNEL_MASS       FL_GPTIM_CHANNEL_2
 
@@ -99,7 +99,7 @@ void PumpPwm_Init(void)
     uint32_t prescaler = 0U;
     uint32_t auto_reload;
 
-    FL_CMU_EnableGroup4BusClock(FL_CMU_GROUP4_BUSCLK_GPTIM1);
+    FL_CMU_EnableGroup4BusClock(FL_CMU_GROUP4_BUSCLK_GPTIM0);
     PumpPwm_InitPins();
 
     auto_reload = PumpPwm_ComputeAutoReload(&prescaler);
