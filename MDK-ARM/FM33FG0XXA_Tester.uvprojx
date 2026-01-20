@@ -517,6 +517,11 @@
               <FileType>1</FileType>
               <FilePath>..\Src\adc.c</FilePath>
             </File>
+            <File>
+              <FileName>pump_pwm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\pump_pwm.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
