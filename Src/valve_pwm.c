@@ -43,6 +43,8 @@
 #include "valve_pwm.h"
 #include "gpio.h"
 
+void FL_GPTIM_OC_StructInit(FL_GPTIM_OC_InitTypeDef *oc_init);
+
 #define VALVE_PWM_GPT_TIMER            GPTIM1
 #define VALVE_PWM_ATIM_TIMER           ATIM
 #define VALVE_PWM_TAU_TIMER            TAU00
