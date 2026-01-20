@@ -49,6 +49,7 @@
 #include "lptim16.h"
 #include "gpio.h"
 #include "pump_pwm.h"
+#include "valve_pwm.h"
 
 uint32_t GetV0;
 uint32_t GetV1;
@@ -83,7 +84,7 @@ static void HandleCanControlMessage(void)
            | ((uint32_t)RxMessage.Data[2] << 16)
            | (((uint32_t)(RxMessage.Data[3] & 0x0FU)) << 24);
 
-    ValveOutputs_Set(mask);
+    ValvePwm_SetMask(mask);
     VND7140_SetInputs((uint8_t)(RxMessage.Data[4] & 0x01U),
                       (uint8_t)(RxMessage.Data[4] & 0x02U));
     VND7140_SetSelect((uint8_t)(RxMessage.Data[5] & 0x01U),
@@ -222,6 +223,9 @@ int main(void)
 
     /* Pump PWM初始化 */
     PumpPwm_Init();
+
+    /* Valve PWM初始化 */
+    ValvePwm_Init();
 		
 		/* ADC初始化 */
     AdcInit();
