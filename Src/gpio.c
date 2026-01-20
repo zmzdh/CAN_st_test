@@ -221,34 +221,123 @@ static void GPIO_WritePin(GPIO_Type *GPIOx, uint32_t pin, uint8_t state)
 
 void ValveOutputs_Set(uint32_t mask)
 {
-    GPIO_WritePin(IN1_GPIO, IN1_PIN, (uint8_t)(mask & (1UL << 0)));
-    GPIO_WritePin(IN2_GPIO, IN2_PIN, (uint8_t)(mask & (1UL << 1)));
-    GPIO_WritePin(IN3_GPIO, IN3_PIN, (uint8_t)(mask & (1UL << 2)));
-    GPIO_WritePin(IN4_GPIO, IN4_PIN, (uint8_t)(mask & (1UL << 3)));
-    GPIO_WritePin(IN5_GPIO, IN5_PIN, (uint8_t)(mask & (1UL << 4)));
-    GPIO_WritePin(IN6_GPIO, IN6_PIN, (uint8_t)(mask & (1UL << 5)));
-    GPIO_WritePin(IN7_GPIO, IN7_PIN, (uint8_t)(mask & (1UL << 6)));
-    GPIO_WritePin(IN8_GPIO, IN8_PIN, (uint8_t)(mask & (1UL << 7)));
-    GPIO_WritePin(IN9_GPIO, IN9_PIN, (uint8_t)(mask & (1UL << 8)));
-    GPIO_WritePin(IN10_GPIO, IN10_PIN, (uint8_t)(mask & (1UL << 9)));
-    GPIO_WritePin(IN11_GPIO, IN11_PIN, (uint8_t)(mask & (1UL << 10)));
-    GPIO_WritePin(IN12_GPIO, IN12_PIN, (uint8_t)(mask & (1UL << 11)));
-    GPIO_WritePin(IN13_GPIO, IN13_PIN, (uint8_t)(mask & (1UL << 12)));
-    GPIO_WritePin(IN14_GPIO, IN14_PIN, (uint8_t)(mask & (1UL << 13)));
-    GPIO_WritePin(IN15_GPIO, IN15_PIN, (uint8_t)(mask & (1UL << 14)));
-    GPIO_WritePin(IN16_GPIO, IN16_PIN, (uint8_t)(mask & (1UL << 15)));
-    GPIO_WritePin(IN17_GPIO, IN17_PIN, (uint8_t)(mask & (1UL << 16)));
-    GPIO_WritePin(IN18_GPIO, IN18_PIN, (uint8_t)(mask & (1UL << 17)));
-    GPIO_WritePin(IN19_GPIO, IN19_PIN, (uint8_t)(mask & (1UL << 18)));
-    GPIO_WritePin(IN20_GPIO, IN20_PIN, (uint8_t)(mask & (1UL << 19)));
-    GPIO_WritePin(IN21_GPIO, IN21_PIN, (uint8_t)(mask & (1UL << 20)));
-    GPIO_WritePin(IN22_GPIO, IN22_PIN, (uint8_t)(mask & (1UL << 21)));
-    GPIO_WritePin(IN23_GPIO, IN23_PIN, (uint8_t)(mask & (1UL << 22)));
-    GPIO_WritePin(IN24_GPIO, IN24_PIN, (uint8_t)(mask & (1UL << 23)));
-    GPIO_WritePin(IN25_GPIO, IN25_PIN, (uint8_t)(mask & (1UL << 24)));
-    GPIO_WritePin(IN26_GPIO, IN26_PIN, (uint8_t)(mask & (1UL << 25)));
-    GPIO_WritePin(IN27_GPIO, IN27_PIN, (uint8_t)(mask & (1UL << 26)));
-    GPIO_WritePin(IN28_GPIO, IN28_PIN, (uint8_t)(mask & (1UL << 27)));
+    ValveOutputs_SetMasked(mask, 0x0FFFFFFFUL);
+}
+
+void ValveOutputs_SetMasked(uint32_t mask, uint32_t group_mask)
+{
+    if ((group_mask & (1UL << 0)) != 0U)
+    {
+        GPIO_WritePin(IN1_GPIO, IN1_PIN, (uint8_t)(mask & (1UL << 0)));
+    }
+    if ((group_mask & (1UL << 1)) != 0U)
+    {
+        GPIO_WritePin(IN2_GPIO, IN2_PIN, (uint8_t)(mask & (1UL << 1)));
+    }
+    if ((group_mask & (1UL << 2)) != 0U)
+    {
+        GPIO_WritePin(IN3_GPIO, IN3_PIN, (uint8_t)(mask & (1UL << 2)));
+    }
+    if ((group_mask & (1UL << 3)) != 0U)
+    {
+        GPIO_WritePin(IN4_GPIO, IN4_PIN, (uint8_t)(mask & (1UL << 3)));
+    }
+    if ((group_mask & (1UL << 4)) != 0U)
+    {
+        GPIO_WritePin(IN5_GPIO, IN5_PIN, (uint8_t)(mask & (1UL << 4)));
+    }
+    if ((group_mask & (1UL << 5)) != 0U)
+    {
+        GPIO_WritePin(IN6_GPIO, IN6_PIN, (uint8_t)(mask & (1UL << 5)));
+    }
+    if ((group_mask & (1UL << 6)) != 0U)
+    {
+        GPIO_WritePin(IN7_GPIO, IN7_PIN, (uint8_t)(mask & (1UL << 6)));
+    }
+    if ((group_mask & (1UL << 7)) != 0U)
+    {
+        GPIO_WritePin(IN8_GPIO, IN8_PIN, (uint8_t)(mask & (1UL << 7)));
+    }
+    if ((group_mask & (1UL << 8)) != 0U)
+    {
+        GPIO_WritePin(IN9_GPIO, IN9_PIN, (uint8_t)(mask & (1UL << 8)));
+    }
+    if ((group_mask & (1UL << 9)) != 0U)
+    {
+        GPIO_WritePin(IN10_GPIO, IN10_PIN, (uint8_t)(mask & (1UL << 9)));
+    }
+    if ((group_mask & (1UL << 10)) != 0U)
+    {
+        GPIO_WritePin(IN11_GPIO, IN11_PIN, (uint8_t)(mask & (1UL << 10)));
+    }
+    if ((group_mask & (1UL << 11)) != 0U)
+    {
+        GPIO_WritePin(IN12_GPIO, IN12_PIN, (uint8_t)(mask & (1UL << 11)));
+    }
+    if ((group_mask & (1UL << 12)) != 0U)
+    {
+        GPIO_WritePin(IN13_GPIO, IN13_PIN, (uint8_t)(mask & (1UL << 12)));
+    }
+    if ((group_mask & (1UL << 13)) != 0U)
+    {
+        GPIO_WritePin(IN14_GPIO, IN14_PIN, (uint8_t)(mask & (1UL << 13)));
+    }
+    if ((group_mask & (1UL << 14)) != 0U)
+    {
+        GPIO_WritePin(IN15_GPIO, IN15_PIN, (uint8_t)(mask & (1UL << 14)));
+    }
+    if ((group_mask & (1UL << 15)) != 0U)
+    {
+        GPIO_WritePin(IN16_GPIO, IN16_PIN, (uint8_t)(mask & (1UL << 15)));
+    }
+    if ((group_mask & (1UL << 16)) != 0U)
+    {
+        GPIO_WritePin(IN17_GPIO, IN17_PIN, (uint8_t)(mask & (1UL << 16)));
+    }
+    if ((group_mask & (1UL << 17)) != 0U)
+    {
+        GPIO_WritePin(IN18_GPIO, IN18_PIN, (uint8_t)(mask & (1UL << 17)));
+    }
+    if ((group_mask & (1UL << 18)) != 0U)
+    {
+        GPIO_WritePin(IN19_GPIO, IN19_PIN, (uint8_t)(mask & (1UL << 18)));
+    }
+    if ((group_mask & (1UL << 19)) != 0U)
+    {
+        GPIO_WritePin(IN20_GPIO, IN20_PIN, (uint8_t)(mask & (1UL << 19)));
+    }
+    if ((group_mask & (1UL << 20)) != 0U)
+    {
+        GPIO_WritePin(IN21_GPIO, IN21_PIN, (uint8_t)(mask & (1UL << 20)));
+    }
+    if ((group_mask & (1UL << 21)) != 0U)
+    {
+        GPIO_WritePin(IN22_GPIO, IN22_PIN, (uint8_t)(mask & (1UL << 21)));
+    }
+    if ((group_mask & (1UL << 22)) != 0U)
+    {
+        GPIO_WritePin(IN23_GPIO, IN23_PIN, (uint8_t)(mask & (1UL << 22)));
+    }
+    if ((group_mask & (1UL << 23)) != 0U)
+    {
+        GPIO_WritePin(IN24_GPIO, IN24_PIN, (uint8_t)(mask & (1UL << 23)));
+    }
+    if ((group_mask & (1UL << 24)) != 0U)
+    {
+        GPIO_WritePin(IN25_GPIO, IN25_PIN, (uint8_t)(mask & (1UL << 24)));
+    }
+    if ((group_mask & (1UL << 25)) != 0U)
+    {
+        GPIO_WritePin(IN26_GPIO, IN26_PIN, (uint8_t)(mask & (1UL << 25)));
+    }
+    if ((group_mask & (1UL << 26)) != 0U)
+    {
+        GPIO_WritePin(IN27_GPIO, IN27_PIN, (uint8_t)(mask & (1UL << 26)));
+    }
+    if ((group_mask & (1UL << 27)) != 0U)
+    {
+        GPIO_WritePin(IN28_GPIO, IN28_PIN, (uint8_t)(mask & (1UL << 27)));
+    }
 }
 
 void VND7140_SetInputs(uint8_t input0, uint8_t input1)
