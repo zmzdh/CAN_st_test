@@ -2950,6 +2950,7 @@ __STATIC_INLINE void FL_GPTIM_IC_DisableChannel(GPTIM_Type* TIMx, uint32_t chann
   * @{
   */
 //#warning "PLEASE ANNOUCE THE INIT AND DEINIT FUNCTIONS HERE!!!"
+void FL_GPTIM_OC_StructInit(FL_GPTIM_OC_InitTypeDef *oc_init);
 FL_ErrorStatus FL_GPTIM_Init(GPTIM_Type *TIMx,FL_GPTIM_InitTypeDef *init);
 FL_ErrorStatus FL_GPTIM_OC_Init(GPTIM_Type *TIMx, uint32_t channel, FL_GPTIM_OC_InitTypeDef *oc_init);
 FL_ErrorStatus FL_GPTIM_IC_Init(GPTIM_Type *TIMx, uint32_t channel, FL_GPTIM_IC_InitTypeDef *ic_init);
