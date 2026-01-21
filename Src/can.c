@@ -234,6 +234,7 @@ int32_t Can_Controller_Init(void)
     GPIO_InitStruct.remapPin = FL_GPIO_PINREMAP_FUNCTON1;
     GPIO_InitStruct.driveStrength = FL_GPIO_DRIVESTRENGTH_X3;  
     (void)FL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+    FL_GPIO_SetOutputPin(GPIOB, FL_GPIO_PIN_1);
     
     /* 配置波特率= CAN_CLK/(BRP+1)/(TS1_Tq+TS2_Tq+1);  8M/(0+1)/(11+4+1)=500K */
     CAN_InitStructure.TS1 = FL_CAN_TS1_11Tq;

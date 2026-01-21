@@ -45,7 +45,7 @@
 
 #include "fm33fg0xxa_fl.h"
 
-#define VALVE_PWM_FREQUENCY_HZ   1000U
+#define VALVE_PWM_FREQUENCY_HZ   20000U
 #define VALVE_PWM_DUTY_MAX       100U
 #define VALVE_PWM_DEFAULT_DUTY   70U
 

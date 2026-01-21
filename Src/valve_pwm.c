@@ -43,9 +43,20 @@
 #include "valve_pwm.h"
 #include "gpio.h"
 
-#define VALVE_PWM_TIMER            GPTIM1
-#define VALVE_PWM_TIMER_CLOCK_HZ   8000000U
-#define VALVE_PWM_MAX_ARR          0xFFFFU
+void FL_GPTIM_OC_StructInit(FL_GPTIM_OC_InitTypeDef *oc_init);
+
+#define VALVE_PWM_GPT_TIMER            GPTIM1
+#define VALVE_PWM_ATIM_TIMER           ATIM
+#define VALVE_PWM_TAU_TIMER            TAU00
+
+#define VALVE_PWM_TIMER_CLOCK_HZ       8000000U
+#define VALVE_PWM_MAX_ARR              0xFFFFU
+
+#define VALVE_PWM_MASK_ALL             0x0FFFFFFFUL
+#define VALVE_PWM_MASK_GPT             ((1UL << 0)  | (1UL << 1)  | (1UL << 2)  | (1UL << 3) | \
+                                        (1UL << 10) | (1UL << 11) | (1UL << 12) | (1UL << 13))
+#define VALVE_PWM_MASK_ATIM            ((1UL << 6) | (1UL << 7) | (1UL << 8) | (1UL << 9))
+#define VALVE_PWM_MASK_TAU             (VALVE_PWM_MASK_ALL & ~(VALVE_PWM_MASK_GPT | VALVE_PWM_MASK_ATIM))
 
 static volatile uint32_t g_valve_pwm_mask = 0U;
 static volatile uint8_t g_valve_pwm_duty = VALVE_PWM_DEFAULT_DUTY;
@@ -139,19 +150,30 @@ void ValvePwm_SetDutyPercent(uint8_t duty_percent)
 void ValvePwm_SetMask(uint32_t mask)
 {
     uint32_t primask;
+    uint32_t previous_mask;
+    uint32_t removed_mask;
+    uint32_t new_mask = mask & VALVE_PWM_MASK_ALL;
 
     primask = __get_PRIMASK();
     __disable_irq();
-    g_valve_pwm_mask = mask;
+    previous_mask = g_valve_pwm_mask;
+    g_valve_pwm_mask = new_mask;
+    g_valve_pwm_group_mask[VALVE_PWM_GROUP_GPT] = g_valve_pwm_mask & VALVE_PWM_MASK_GPT;
+    g_valve_pwm_group_mask[VALVE_PWM_GROUP_ATIM] = g_valve_pwm_mask & VALVE_PWM_MASK_ATIM;
+    g_valve_pwm_group_mask[VALVE_PWM_GROUP_TAU] = g_valve_pwm_mask & VALVE_PWM_MASK_TAU;
+    removed_mask = previous_mask & ~new_mask;
     if (primask == 0U)
     {
         __enable_irq();
     }
 
-    if ((mask == 0U) || (g_valve_pwm_duty == 0U))
+    if (removed_mask != 0U)
     {
-        ValveOutputs_Set(0U);
+        ValveOutputs_SetMasked(0U, removed_mask);
     }
+    ValvePwm_ApplyGroupOutput(g_valve_pwm_group_mask[VALVE_PWM_GROUP_GPT], g_valve_pwm_duty[VALVE_PWM_GROUP_GPT]);
+    ValvePwm_ApplyGroupOutput(g_valve_pwm_group_mask[VALVE_PWM_GROUP_ATIM], g_valve_pwm_duty[VALVE_PWM_GROUP_ATIM]);
+    ValvePwm_ApplyGroupOutput(g_valve_pwm_group_mask[VALVE_PWM_GROUP_TAU], g_valve_pwm_duty[VALVE_PWM_GROUP_TAU]);
 }
 
 void ValvePwm_Disable(void)
