@@ -73,7 +73,7 @@ static void HandleCanControlMessage(void)
 {
     uint32_t mask;
 
-    if ((RxMessage.StdId != CAN_CTRL_STD_ID) || (RxMessage.DLC < 7U))
+    if ((RxMessage.StdId != CAN_CTRL_STD_ID) || (RxMessage.DLC < 4U))
     {
         return;
     }
@@ -84,12 +84,21 @@ static void HandleCanControlMessage(void)
            | (((uint32_t)(RxMessage.Data[3] & 0x0FU)) << 24);
 
     ValveOutputs_Set(mask);
-    VND7140_SetInputs((uint8_t)(RxMessage.Data[4] & 0x01U),
-                      (uint8_t)(RxMessage.Data[4] & 0x02U));
-    VND7140_SetSelect((uint8_t)(RxMessage.Data[5] & 0x01U),
-                      (uint8_t)(RxMessage.Data[5] & 0x02U),
-                      (uint8_t)(RxMessage.Data[5] & 0x04U));
-    if ((RxMessage.Data[6] & 0x01U) != 0U)
+
+    if (RxMessage.DLC >= 5U)
+    {
+        VND7140_SetInputs((uint8_t)(RxMessage.Data[4] & 0x01U),
+                          (uint8_t)(RxMessage.Data[4] & 0x02U));
+    }
+
+    if (RxMessage.DLC >= 6U)
+    {
+        VND7140_SetSelect((uint8_t)(RxMessage.Data[5] & 0x01U),
+                          (uint8_t)(RxMessage.Data[5] & 0x02U),
+                          (uint8_t)(RxMessage.Data[5] & 0x04U));
+    }
+
+    if ((RxMessage.DLC >= 7U) && ((RxMessage.Data[6] & 0x01U) != 0U))
     {
         PumpPwm_DisableAll();
         VND7140_FaultResetPulse();
