@@ -48,6 +48,9 @@
 #define LED0_GPIO   			GPIOE
 #define LED0_PIN    			FL_GPIO_PIN_4
 
+#define VALVE_FB_GPIO     GPIOC
+#define VALVE_FB_PIN      FL_GPIO_PIN_4
+
 #define EVPOWER_EN_GPIO   GPIOC
 #define EVPOWER_EN_PIN    FL_GPIO_PIN_5
 

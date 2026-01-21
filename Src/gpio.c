@@ -68,6 +68,14 @@ void GPIO_Init(void)
     GPIO_InitStruct.driveStrength = FL_GPIO_DRIVESTRENGTH_X3;
     (void)FL_GPIO_Init(EVPOWER_EN_GPIO, &GPIO_InitStruct);
 
+    GPIO_InitStruct.pin           = VALVE_FB_PIN;
+    GPIO_InitStruct.mode          = FL_GPIO_MODE_OUTPUT;
+    GPIO_InitStruct.outputType    = FL_GPIO_OUTPUT_PUSHPULL;
+    GPIO_InitStruct.pull          = FL_GPIO_BOTH_DISABLE;
+    GPIO_InitStruct.remapPin      = FL_GPIO_PINREMAP_FUNCTON0;
+    GPIO_InitStruct.driveStrength = FL_GPIO_DRIVESTRENGTH_X3;
+    (void)FL_GPIO_Init(VALVE_FB_GPIO, &GPIO_InitStruct);
+
     GPIO_InitStruct.mode          = FL_GPIO_MODE_OUTPUT;
     GPIO_InitStruct.outputType    = FL_GPIO_OUTPUT_PUSHPULL;
     GPIO_InitStruct.pull          = FL_GPIO_BOTH_DISABLE;
@@ -155,6 +163,7 @@ void GPIO_Init(void)
     ValveOutputs_Set(0U);
     VND7140_SetInputs(0U, 0U);
     VND7140_SetSelect(0U, 0U, 0U);
+    FL_GPIO_SetOutputPin(VALVE_FB_GPIO, VALVE_FB_PIN);
     FL_GPIO_ResetOutputPin(VND7140_FAULTRST_GPIO, VND7140_FAULTRST_PIN);
 }
 
@@ -167,7 +176,8 @@ void GPIO_Init(void)
 void GPIO_DeInit(void)
 {
     FL_GPIO_DeInit(LED0_GPIO, LED0_PIN);
-		FL_GPIO_DeInit(EVPOWER_EN_GPIO, EVPOWER_EN_PIN);
+	FL_GPIO_DeInit(EVPOWER_EN_GPIO, EVPOWER_EN_PIN);
+    FL_GPIO_DeInit(VALVE_FB_GPIO, VALVE_FB_PIN);
 
     FL_GPIO_DeInit(IN1_GPIO, IN1_PIN);
     FL_GPIO_DeInit(IN2_GPIO, IN2_PIN);

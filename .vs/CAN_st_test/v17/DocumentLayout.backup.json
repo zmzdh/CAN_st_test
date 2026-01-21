@@ -1,7 +1,16 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\SynologyDrive\\FMSH\\CAN_st_test\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\SynologyDrive\\FMSH\\CAN_st_test\\Src\\gpio.c||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Src\\gpio.c||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\SynologyDrive\\FMSH\\CAN_st_test\\Inc\\gpio.h||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Inc\\gpio.h||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 10,
           "Children": [
             {
               "$type": "Bookmark",
@@ -46,6 +55,36 @@
             {
               "$type": "Bookmark",
               "Name": "ST:129:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "gpio.c",
+              "DocumentMoniker": "D:\\SynologyDrive\\FMSH\\CAN_st_test\\Src\\gpio.c",
+              "RelativeDocumentMoniker": "Src\\gpio.c",
+              "ToolTip": "D:\\SynologyDrive\\FMSH\\CAN_st_test\\Src\\gpio.c",
+              "RelativeToolTip": "Src\\gpio.c",
+              "ViewState": "AgIAAJkAAAAAAAAAAADwv7MAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2026-01-21T09:50:28.03Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "gpio.h",
+              "DocumentMoniker": "D:\\SynologyDrive\\FMSH\\CAN_st_test\\Inc\\gpio.h",
+              "RelativeDocumentMoniker": "Inc\\gpio.h",
+              "ToolTip": "D:\\SynologyDrive\\FMSH\\CAN_st_test\\Inc\\gpio.h",
+              "RelativeToolTip": "Inc\\gpio.h",
+              "ViewState": "AgIAACQAAAAAAAAAAADwvzMAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2026-01-21T09:49:27.437Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Bookmark",
