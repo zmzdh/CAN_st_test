@@ -49,8 +49,17 @@
 #define VALVE_PWM_DUTY_MAX       100U
 #define VALVE_PWM_DEFAULT_DUTY   70U
 
+typedef enum
+{
+    VALVE_PWM_GROUP_GPT = 0,
+    VALVE_PWM_GROUP_ATIM,
+    VALVE_PWM_GROUP_TAU,
+    VALVE_PWM_GROUP_COUNT
+} ValvePwm_Group;
+
 void ValvePwm_Init(void);
 void ValvePwm_SetDutyPercent(uint8_t duty_percent);
+void ValvePwm_SetGroupDutyPercent(ValvePwm_Group group, uint8_t duty_percent);
 void ValvePwm_SetMask(uint32_t mask);
 void ValvePwm_Disable(void);
 
