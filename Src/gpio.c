@@ -221,34 +221,34 @@ static void GPIO_WritePin(GPIO_Type *GPIOx, uint32_t pin, uint8_t state)
 
 void ValveOutputs_Set(uint32_t mask)
 {
-    GPIO_WritePin(IN1_GPIO, IN1_PIN, (uint8_t)(mask & (1UL << 0)));
-    GPIO_WritePin(IN2_GPIO, IN2_PIN, (uint8_t)(mask & (1UL << 1)));
-    GPIO_WritePin(IN3_GPIO, IN3_PIN, (uint8_t)(mask & (1UL << 2)));
-    GPIO_WritePin(IN4_GPIO, IN4_PIN, (uint8_t)(mask & (1UL << 3)));
-    GPIO_WritePin(IN5_GPIO, IN5_PIN, (uint8_t)(mask & (1UL << 4)));
-    GPIO_WritePin(IN6_GPIO, IN6_PIN, (uint8_t)(mask & (1UL << 5)));
-    GPIO_WritePin(IN7_GPIO, IN7_PIN, (uint8_t)(mask & (1UL << 6)));
-    GPIO_WritePin(IN8_GPIO, IN8_PIN, (uint8_t)(mask & (1UL << 7)));
-    GPIO_WritePin(IN9_GPIO, IN9_PIN, (uint8_t)(mask & (1UL << 8)));
-    GPIO_WritePin(IN10_GPIO, IN10_PIN, (uint8_t)(mask & (1UL << 9)));
-    GPIO_WritePin(IN11_GPIO, IN11_PIN, (uint8_t)(mask & (1UL << 10)));
-    GPIO_WritePin(IN12_GPIO, IN12_PIN, (uint8_t)(mask & (1UL << 11)));
-    GPIO_WritePin(IN13_GPIO, IN13_PIN, (uint8_t)(mask & (1UL << 12)));
-    GPIO_WritePin(IN14_GPIO, IN14_PIN, (uint8_t)(mask & (1UL << 13)));
-    GPIO_WritePin(IN15_GPIO, IN15_PIN, (uint8_t)(mask & (1UL << 14)));
-    GPIO_WritePin(IN16_GPIO, IN16_PIN, (uint8_t)(mask & (1UL << 15)));
-    GPIO_WritePin(IN17_GPIO, IN17_PIN, (uint8_t)(mask & (1UL << 16)));
-    GPIO_WritePin(IN18_GPIO, IN18_PIN, (uint8_t)(mask & (1UL << 17)));
-    GPIO_WritePin(IN19_GPIO, IN19_PIN, (uint8_t)(mask & (1UL << 18)));
-    GPIO_WritePin(IN20_GPIO, IN20_PIN, (uint8_t)(mask & (1UL << 19)));
-    GPIO_WritePin(IN21_GPIO, IN21_PIN, (uint8_t)(mask & (1UL << 20)));
-    GPIO_WritePin(IN22_GPIO, IN22_PIN, (uint8_t)(mask & (1UL << 21)));
-    GPIO_WritePin(IN23_GPIO, IN23_PIN, (uint8_t)(mask & (1UL << 22)));
-    GPIO_WritePin(IN24_GPIO, IN24_PIN, (uint8_t)(mask & (1UL << 23)));
-    GPIO_WritePin(IN25_GPIO, IN25_PIN, (uint8_t)(mask & (1UL << 24)));
-    GPIO_WritePin(IN26_GPIO, IN26_PIN, (uint8_t)(mask & (1UL << 25)));
-    GPIO_WritePin(IN27_GPIO, IN27_PIN, (uint8_t)(mask & (1UL << 26)));
-    GPIO_WritePin(IN28_GPIO, IN28_PIN, (uint8_t)(mask & (1UL << 27)));
+    GPIO_WritePin(IN1_GPIO, IN1_PIN,  (uint8_t)((mask >> 0) & 0x01));
+    GPIO_WritePin(IN2_GPIO, IN2_PIN,  (uint8_t)((mask >> 1) & 0x01));
+    GPIO_WritePin(IN3_GPIO, IN3_PIN,  (uint8_t)((mask >> 2) & 0x01));
+    GPIO_WritePin(IN4_GPIO, IN4_PIN,  (uint8_t)((mask >> 3) & 0x01));
+    GPIO_WritePin(IN5_GPIO, IN5_PIN,  (uint8_t)((mask >> 4) & 0x01));
+    GPIO_WritePin(IN6_GPIO, IN6_PIN,  (uint8_t)((mask >> 5) & 0x01));
+	  GPIO_WritePin(IN7_GPIO, IN7_PIN,  (uint8_t)((mask >> 6) & 0x01));
+    GPIO_WritePin(IN8_GPIO, IN8_PIN,  (uint8_t)((mask >> 7) & 0x01));
+    GPIO_WritePin(IN9_GPIO, IN9_PIN,  (uint8_t)((mask >> 8) & 0x01));
+	  GPIO_WritePin(IN10_GPIO, IN10_PIN,  (uint8_t)((mask >> 9) & 0x01));
+    GPIO_WritePin(IN11_GPIO, IN11_PIN,  (uint8_t)((mask >> 10) & 0x01));
+	  GPIO_WritePin(IN12_GPIO, IN12_PIN,  (uint8_t)((mask >> 11) & 0x01));
+    GPIO_WritePin(IN13_GPIO, IN13_PIN,  (uint8_t)((mask >> 12) & 0x01));
+    GPIO_WritePin(IN14_GPIO, IN14_PIN,  (uint8_t)((mask >> 13) & 0x01));
+    GPIO_WritePin(IN15_GPIO, IN15_PIN,  (uint8_t)((mask >> 14) & 0x01));
+    GPIO_WritePin(IN16_GPIO, IN16_PIN,  (uint8_t)((mask >> 15) & 0x01));
+	  GPIO_WritePin(IN17_GPIO, IN17_PIN,  (uint8_t)((mask >> 16) & 0x01));
+    GPIO_WritePin(IN18_GPIO, IN18_PIN,  (uint8_t)((mask >> 17) & 0x01));
+    GPIO_WritePin(IN19_GPIO, IN19_PIN,  (uint8_t)((mask >> 18) & 0x01));
+	  GPIO_WritePin(IN20_GPIO, IN20_PIN,  (uint8_t)((mask >> 19) & 0x01));
+    GPIO_WritePin(IN21_GPIO, IN21_PIN,  (uint8_t)((mask >> 20) & 0x01));
+    GPIO_WritePin(IN22_GPIO, IN22_PIN,  (uint8_t)((mask >> 21) & 0x01));
+	  GPIO_WritePin(IN23_GPIO, IN23_PIN,  (uint8_t)((mask >> 22) & 0x01));
+    GPIO_WritePin(IN24_GPIO, IN24_PIN,  (uint8_t)((mask >> 23) & 0x01));
+    GPIO_WritePin(IN25_GPIO, IN25_PIN,  (uint8_t)((mask >> 24) & 0x01));
+	  GPIO_WritePin(IN26_GPIO, IN26_PIN,  (uint8_t)((mask >> 25) & 0x01));
+    GPIO_WritePin(IN27_GPIO, IN27_PIN,  (uint8_t)((mask >> 26) & 0x01));
+    GPIO_WritePin(IN28_GPIO, IN28_PIN,	(uint8_t)((mask >> 27) & 0x01));
 }
 
 void VND7140_SetInputs(uint8_t input0, uint8_t input1)
