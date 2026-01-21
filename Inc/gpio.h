@@ -143,6 +143,7 @@
 extern void GPIO_Init(void);
 extern void GPIO_DeInit(void);
 extern void ValveOutputs_Set(uint32_t mask);
+extern void ValveOutputs_SetMasked(uint32_t mask, uint32_t group_mask);
 extern void VND7140_SetInputs(uint8_t input0, uint8_t input1);
 extern void VND7140_SetSelect(uint8_t sel0, uint8_t sel1, uint8_t mults);
 extern void VND7140_FaultResetPulse(void);
