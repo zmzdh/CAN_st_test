@@ -221,8 +221,6 @@ void ValvePwm_Init(void)
     ValvePwm_InitTau(prescaler, auto_reload);
 
     interrupt_config.preemptPriority = 2U;
-    interrupt_config.subPriority = 0U;
-    interrupt_config.enable = FL_ENABLE;
     FL_NVIC_Init(&interrupt_config, GPTIMX_IRQn);
     FL_NVIC_Init(&interrupt_config, ATIM_IRQn);
     FL_NVIC_Init(&interrupt_config, TAU_PGL_IRQn);

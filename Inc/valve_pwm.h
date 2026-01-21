@@ -57,6 +57,14 @@ typedef enum
     VALVE_PWM_GROUP_COUNT
 } ValvePwm_Group;
 
+typedef enum
+{
+    VALVE_PWM_GROUP_GPT = 0,
+    VALVE_PWM_GROUP_ATIM,
+    VALVE_PWM_GROUP_TAU,
+    VALVE_PWM_GROUP_COUNT
+} ValvePwm_Group;
+
 void ValvePwm_Init(void);
 void ValvePwm_SetDutyPercent(uint8_t duty_percent);
 void ValvePwm_SetGroupDutyPercent(ValvePwm_Group group, uint8_t duty_percent);
